@@ -37,7 +37,9 @@ if "IS_XVFB_RUNNING" not in st.session_state:
     start_xvfb()
     st.session_state.IS_XVFB_RUNNING = True
 
-help_expander_place_holder, three_dee_placeholder, part_controls_placeholder = build_page(part_config)
+help_expander_place_holder, three_dee_placeholder, part_controls_placeholder = (
+    build_page(part_config)
+)
 
 with help_expander_place_holder:
     with st.expander(part_config["titel"]):
@@ -49,7 +51,7 @@ with help_expander_place_holder:
 
 with three_dee_placeholder:
     plotter = pv.Plotter(border=False)
-    plotter.background_color = "#f0f8ff"
+    plotter.background_color = "#1e1e27"
     "static/stl_files/simple_strap_clip_V01.stl"
     if st.session_state["stl_file"] is None:
         part_file, _ = create_handle_v02(sid=session_id)
@@ -75,7 +77,6 @@ with three_dee_placeholder:
 
     plotter.view_vector([1, 1, 1])
     stpyvista(plotter, key=f"plotter_{st.session_state['stl_file']}")
-
 
 
 with part_controls_placeholder:
@@ -142,19 +143,21 @@ with part_controls_placeholder:
             screw_dia = st.select_slider(
                 "Metric Screw Choice",
                 options=[
-                        "m2",
-                        "m3",
-                        "m4",
-                        "m5",
-                        "m6",
-                        "m7",
-                        "m8",
-                    ],
+                    "m2",
+                    "m3",
+                    "m4",
+                    "m5",
+                    "m6",
+                    "m7",
+                    "m8",
+                ],
                 value="m4",
                 help="Select the screw size based on metric system.",
             )
         with st.expander("Add Optional Text", expanded=False):
-            front_text = st.text_input("Enter some optional text for your handle", value ="")
+            front_text = st.text_input(
+                "Enter some optional text for your handle", value=""
+            )
 
         submitted = st.form_submit_button(
             "Generate Your Part", use_container_width=True
@@ -175,7 +178,6 @@ with part_controls_placeholder:
                 front_text,
                 session_id,
             )
-
 
             st.session_state["stl_file"] = part_file
 
@@ -202,4 +204,3 @@ with part_controls_placeholder:
 
                 plotter.view_vector([1, 1, 1])
                 stpyvista(plotter, key=f"plotter_{st.session_state['stl_file']}")
-

@@ -5,13 +5,18 @@ import tempfile
 import os
 
 
-def build_build123d_strap_clip(
+width = 35
+thickness = 3
+height = 55
+layer_width = 0.4
+n_shells = 3
+
+
+def build_strap_clip(
     width=20, thickness=3, height=22, layer_width=0.4, n_shells=3, sid="none"
 ):
     msgs = []
-
     shell_thickness = layer_width * n_shells
-
     if shell_thickness <= 0.1:
         shell_thickness = 0.2
         msgs.append(
@@ -74,8 +79,9 @@ def build_build123d_strap_clip(
 
     main_body = outer_body - inner_body
 
-    ref_slot_width = width - (shell_thickness * 2)
-    slot_thickness = min(thickness, ref_slot_width / 2)
+    ref_slot_width = (width - thickness) / 2
+    slot_thickness = min(thickness / 2, ref_slot_width / 4)
+    print(f"Slot thickness: {slot_thickness:.3f} - \t ref width: {ref_slot_width:.3f}")
 
     """
     plane = Plane(main_body.faces().sort_by(Axis.Y)[0]) * Pos(
@@ -84,7 +90,7 @@ def build_build123d_strap_clip(
     """
 
     plane = Plane(main_body.faces().sort_by(Axis.Y)[0]) * Pos(0, -height / 2, 0)
-    # delta_x = -(ref_slot_width * 0.96 - slot_thickness * 1.2)
+    delta_x = -(ref_slot_width * 0.96 - slot_thickness * 1.2)
     delta_x = -((width - thickness) / 2 - slot_thickness * 1.6 - ref_slot_width / 6)
 
     pts = [
@@ -126,20 +132,9 @@ def build_build123d_strap_clip(
     if len(msgs) == 0:
         msgs.append("Successfully created part.")
 
-    return main_body, msgs, part_file_name
+    return main_body
 
 
-def build_strap_clip(
-    width=20, thickness=3, height=22, layer_width=0.4, n_shells=3, sid="none"
-):
-    pyvista_part, messages, part_file_name = build_build123d_strap_clip(
-        width, thickness, height, layer_width, n_shells, sid
-    )
+geo_part = build_strap_clip(width, thickness, height, layer_width, n_shells)
 
-    fd, temp_file_name = tempfile.mkstemp(
-        prefix=part_file_name[:-4], suffix=part_file_name[-4:]
-    )
-    os.close(fd)
-    export_stl(pyvista_part, temp_file_name)
-
-    return temp_file_name, messages
+show_object(geo_part)

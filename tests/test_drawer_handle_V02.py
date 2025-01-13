@@ -4,7 +4,10 @@ import random
 
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../geo_parts")))
+
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "../geo_parts"))
+)
 
 import build123d as bd
 
@@ -53,7 +56,11 @@ def generate_values(param_config):
     # breakpoint()
     if isinstance(param_config, dict):
         param_list = []
-        min_val, max_val, step = param_config["min"], param_config["max"], param_config["step"]
+        min_val, max_val, step = (
+            param_config["min"],
+            param_config["max"],
+            param_config["step"],
+        )
         current = min_val
         while current <= max_val:
             param_list.append(current)
@@ -73,6 +80,7 @@ def generate_values(param_config):
 # ranges = [generate_values(PARAM_RANGES[param]) for param in PARAM_RANGES]
 # all_combinations = list(product(*ranges))
 
+
 def generate_combinations():
     """Lazily generate all combinations of parameter values."""
     ranges = (generate_values(PARAM_RANGES[param]) for param in PARAM_RANGES)
@@ -80,9 +88,9 @@ def generate_combinations():
         yield combination
 
 
+# @pytest.mark.parametrize("h_width, h_thickness, h_height","h_rad","b_thickness","screw_distance","screw_dia","slant_ang","front_text", generate_combinations())
+# def test_geometry_creation(h_width, h_thickness, h_height,h_rad,b_thickness,screw_distance,screw_dia,slant_ang,front_text,):
 
-#@pytest.mark.parametrize("h_width, h_thickness, h_height","h_rad","b_thickness","screw_distance","screw_dia","slant_ang","front_text", generate_combinations())
-#def test_geometry_creation(h_width, h_thickness, h_height,h_rad,b_thickness,screw_distance,screw_dia,slant_ang,front_text,):
 
 def test_geometry_creation():
     """Test the geometry creation function with all combinations."""
@@ -92,13 +100,15 @@ def test_geometry_creation():
         try:
             # print(f"\nTesting combo: {h_width} - {h_thickness} - {h_height}")
             print(f"\nTesting combo: {combo}")
-            geometry, _, _ = create_build123d_handle_v02(*combo, sid='test')
+            geometry, _, _ = create_build123d_handle_v02(*combo, sid="test")
             # breakpoint()
-            assert isinstance(geometry, bd.topology.Part), (
-                f"Returned type is not Workplane for inputs ({h_width} - {h_thickness} - {h_height})"
-            )
+            assert isinstance(
+                geometry, bd.topology.Part
+            ), f"Returned type is not Workplane for inputs ({h_width} - {h_thickness} - {h_height})"
             # assert geometry.is_manifold, ("Part is not manifold.")
-            assert len(geometry.solids())==1, ("Looks like we created multiple solids (maybe 0)")
+            assert (
+                len(geometry.solids()) == 1
+            ), "Looks like we created multiple solids (maybe 0)"
         except Exception as e:
             breakpoint()
             pytest.fail(f"Exception raised for inputs ({combo}): {e}")
