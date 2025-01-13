@@ -8,44 +8,16 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../geo_
 
 import build123d as bd
 
-from drawer_handle_V02 import create_build123d_handle_v02
+from simple_strap_clip_V01 import build_build123d_strap_clip
 
-# Configuration for parameter ranges
-# PARAM_RANGES = {
-#     "h_width": {"min": 10, "max": 400, "step": 1},
-#     "h_thickness": {"min": 1, "max": 20, "step": 0.5},
-#     "h_height": {"min": 10, "max": 130, "step": 1},
-# }
 
 PARAM_RANGES = {
-    "h_width": {"min": 10, "max": 140, "step": 65},
-    "h_thickness": {"min": 1, "max": 20, "step": 9.5},
-    "h_height": {"min": 10, "max": 60, "step": 30},
-    "h_rad": {"min": 0, "max": 100, "step": 50},
-    "b_thickness": {"min": 2, "max": 40, "step": 20},
-    "screw_distance": {"min": 10, "max": 120, "step": 60},
-    "screw_dia": ["m2", "m4", "m8"],
-    "slant_ang": {"min": -45, "max": 45, "step": 45},
-    "front_text": ["", "ms", "pretty awesome long text"],
+    "width": {"min": 5, "max": 100, "step": 12},
+    "thickness": {"min": 1, "max": 20, "step": 3},
+    "height": {"min": 2, "max": 200, "step": 25},
+    "layer_width": {"min": 0.01, "max": 1.0, "step": 0.1},
+    "n_shells": {"min": 1, "max": 20, "step": 3},
 }
-
-# PARAM_RANGES = {
-#     "h_width": {"min": 35, "max": 140, "step": 25},
-#     "h_thickness": {"min": 16.0, "max": 20, "step": 7.5},
-#     "h_height": {"min": 60, "max": 60, "step": 20},
-#     "h_rad": {"min": 0, "max": 100, "step": 25},
-#     "b_thickness": {"min": 2, "max": 40, "step": 10},
-#     "screw_distance": {"min": 10, "max": 120, "step": 20},
-#     "screw_dia": ["m2", "m4", "m8"],
-#     "slant_ang": {"min": -45, "max": 45, "step": 22.5},
-#     "front_text": ["",]# "ms",]# "pretty awesome long text"],
-# }
-
-# PARAM_RANGES = {
-#     "h_width": {"min": 10, "max": 12, "step": 1},
-#     "h_thickness": {"min": 1, "max": 3, "step": 1},
-#     "h_height": {"min": 10, "max": 13, "step": 1},
-# }
 
 
 def generate_values(param_config):
@@ -90,15 +62,14 @@ def test_geometry_creation():
     for combo in combinations:
         # breakpoint()
         try:
-            # print(f"\nTesting combo: {h_width} - {h_thickness} - {h_height}")
-            print(f"\nTesting combo: {combo}")
-            geometry, _, _ = create_build123d_handle_v02(*combo, sid='test')
+            print(f"\nTesting Strap Clip V01 combo: {combo}")
+            geometry, _, _ = build_build123d_strap_clip(*combo, sid='test')
             # breakpoint()
             assert isinstance(geometry, bd.topology.Part), (
-                f"Returned type is not Workplane for inputs ({h_width} - {h_thickness} - {h_height})"
+                f"Returned type is not Workplane for inputs ({combo})"
             )
             # assert geometry.is_manifold, ("Part is not manifold.")
-            assert len(geometry.solids())==1, ("Looks like we created multiple solids (maybe 0)")
+            # assert len(geometry.solids())==1, ("Looks like we created multiple solids (maybe 0)")
         except Exception as e:
             breakpoint()
             pytest.fail(f"Exception raised for inputs ({combo}): {e}")

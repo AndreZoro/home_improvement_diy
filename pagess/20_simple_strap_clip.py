@@ -63,7 +63,8 @@ with three_d_window:
     three_dee_placeholder = st.empty()
     with three_dee_placeholder:
         plotter = pv.Plotter(border=False)
-        plotter.background_color = "#f0f8ff"
+        # plotter.background_color = "#f0f8ff"
+        plotter.background_color = "#1e1e27"
         "static/stl_files/simple_strap_clip_V01.stl"
         if st.session_state['stl_file'] is None:
             st.session_state['stl_file'] = "static/stl_files/simple_strap_clip_V01.stl"
@@ -83,18 +84,22 @@ with part_controls:
     # width=20, thickness=3, height=22, layer_width=0.4, n_shells=3,sid='none'
     # with st.expander("Basic Settings", expanded=True):
     with st.form("Define Strap Clip Design:"):
-        width=st.slider("Strap Width [mm]", min_value=2, max_value=200, value = 20, help="Width of your strap in mm.")
-        thickness=st.slider("Strap Thickness [mm]", min_value=1, max_value=50, value = 3, help="Total thickness of your strap in mm.")
-        height=st.slider("Clip Height [mm]", min_value=2, max_value=200, value = 20, help="How tall you want your clip to be in mm.")
-        layer_width=st.slider("Layer Width [mm]", min_value=0.01, max_value=5.0, value = 0.4, help="Approx width of the layers created by your printer in mm. Nozzel diameter is perfect for this.")
-        n_shells=st.slider("N Shells", min_value=1, max_value=20, value = 3, help="How many shells / layer lines the clip should be made of. Too many makes the clip very rigid while too few make it too flexible. 3 seems to be the best compromize.")
+        width=st.slider("Strap Width [mm]", min_value=5.0, max_value=100.0, value = 20.0, step=1.0, help="Width of your strap in mm.")
+        thickness=st.slider("Strap Thickness [mm]", min_value=1.0, max_value=20.0, value = 3.0, step=0.25, help="Total thickness of your strap in mm.")
+        height=st.slider("Clip Height [mm]", min_value=2.0, max_value=200.0, value = 20.0, step=1.0, help="How tall you want your clip to be in mm.")
+        layer_width=st.slider("Layer Width [mm]", min_value=0.1, max_value=1.0, value = 0.4, step=0.1, help="Approx width of the layers created by your printer in mm. Nozzel diameter is perfect for this.")
+        n_shells=st.slider("N Shells", min_value=1, max_value=20, value = 3, step=1, help="How many shells / layer lines the clip should be made of. Too many makes the clip very rigid while too few make it too flexible. 3 seems to be the best compromize.")
 
         submitted = st.form_submit_button("Generate Your Part", use_container_width=True)
         if submitted:
             # st.write("Creating part...")
 
-            stl_file_name = build_strap_clip(width, thickness, height, layer_width, n_shells,session_id)
+            stl_file_name, messages = build_strap_clip(width, thickness, height, layer_width, n_shells,session_id)
+
             st.session_state['stl_file'] = stl_file_name
+            for msg in messages:
+                st.toast(msg)
+
             # st.write(f"ST STL STATE: {st.session_state['stl_file']}")
             with three_dee_placeholder:
                 plotter.clear()
