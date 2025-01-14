@@ -31,13 +31,14 @@ from misc_page_elements.session import get_session
 part_config = return_part_config(str(Path(__file__).stem))
 session_id = get_session()
 st.session_state["stl_file"] = None
+st.session_state["part_name"] = part_config["name"]
 
 
 if "IS_XVFB_RUNNING" not in st.session_state:
     start_xvfb()
     st.session_state.IS_XVFB_RUNNING = True
 
-help_expander_place_holder, three_dee_placeholder, part_controls_placeholder = (
+help_expander_place_holder, three_dee_placeholder, part_controls_placeholder, dl_buttons_placeholder = (
     build_page(part_config)
 )
 
@@ -204,3 +205,9 @@ with part_controls_placeholder:
 
                 plotter.view_vector([1, 1, 1])
                 stpyvista(plotter, key=f"plotter_{st.session_state['stl_file']}")
+
+            # st.write(f'{st.session_state["stl_file"]} - {st.session_state["part_name"]}')
+
+        with dl_buttons_placeholder:
+            download_part(st.session_state["stl_file"], st.session_state["part_name"])
+

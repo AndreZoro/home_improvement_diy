@@ -195,10 +195,12 @@ def build_page(part_config):
         #             plotter.view_vector([1, 1, 1])
         #             stpyvista(plotter, key=f"plotter_{st.session_state['stl_file']}")
 
-        download_part(st.session_state["stl_file"], f"{part_config['name']}.stl")
+        # download_part(st.session_state["stl_file"], st.session_state["part_name"])
+        # download_part()
+        dl_buttons_placeholder = st.container()
         client_feedback_section()
 
     add_footer()
 
-    return help_expander_place_holder, three_dee_placeholder, part_controls_placeholder
+    return help_expander_place_holder, three_dee_placeholder, part_controls_placeholder, dl_buttons_placeholder
 

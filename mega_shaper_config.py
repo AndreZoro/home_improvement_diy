@@ -105,22 +105,22 @@ registered_parts = {
         ],
         "titel": "Design a slot car rim to your own specifications.",
     },
-    "90_drawer_handle": {
-        "name": "Drawer Handle",
-        "categories": ["first_demo_parts", "diy", "home_deco"],
-        "main_image": [
-            "static/images/drawer_handel/drawer_pull_main_image.png",
-            "DESC",
-        ],
-        "hero_images": [
-            ["static/images/drawer_handel/drawer_pull_01.png", "DESC"],
-            ["static/images/drawer_handel/drawer_pull_02.png", "DESC"],
-            ["static/images/drawer_handel/drawer_pull_03.png", "DESC"],
-            ["static/images/drawer_handel/drawer_pull_04.png", "DESC"],
-            ["static/images/drawer_handel/drawer_pull_05.png", "DESC"],
-        ],
-        "titel": "Design a drawer handle to your own specifications.",
-    },
+    # "90_drawer_handle": {
+    #     "name": "Drawer Handle",
+    #     "categories": ["first_demo_parts", "diy", "home_deco"],
+    #     "main_image": [
+    #         "static/images/drawer_handel/drawer_pull_main_image.png",
+    #         "DESC",
+    #     ],
+    #     "hero_images": [
+    #         ["static/images/drawer_handel/drawer_pull_01.png", "DESC"],
+    #         ["static/images/drawer_handel/drawer_pull_02.png", "DESC"],
+    #         ["static/images/drawer_handel/drawer_pull_03.png", "DESC"],
+    #         ["static/images/drawer_handel/drawer_pull_04.png", "DESC"],
+    #         ["static/images/drawer_handel/drawer_pull_05.png", "DESC"],
+    #     ],
+    #     "titel": "Design a drawer handle to your own specifications.",
+    # },
     "91_drawer_handle_V02": {
         "name": "Drawer Handle",
         "categories": ["first_demo_parts", "diy", "home_deco"],
@@ -136,6 +136,22 @@ registered_parts = {
             ["static/images/drawer_handel/drawer_pull_05.png", "DESC"],
         ],
         "titel": "Design a drawer handle to your own specifications.",
+    },
+    "100_coffee_dosing_funnel_V01": {
+        "name": "Coffee Dosing Funnel",
+        "categories": ["first_demo_parts", "coffee"],
+        "main_image": [
+            "static/images/coffee_funnel/coffee_funnel_main_V01.png",
+            "DESC",
+        ],
+        "hero_images": [
+            ["static/images/drawer_handel/drawer_pull_01.png", "DESC"],
+            ["static/images/drawer_handel/drawer_pull_02.png", "DESC"],
+            ["static/images/drawer_handel/drawer_pull_03.png", "DESC"],
+            ["static/images/drawer_handel/drawer_pull_04.png", "DESC"],
+            ["static/images/drawer_handel/drawer_pull_05.png", "DESC"],
+        ],
+        "titel": "Design a coffee dosing funnel to your own specifications.",
     },
 }
 

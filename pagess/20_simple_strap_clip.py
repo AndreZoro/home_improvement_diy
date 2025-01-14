@@ -30,6 +30,7 @@ part_config = return_part_config(str(Path(__file__).stem))
 session_id = get_session()
 
 st.session_state["stl_file"] = None
+st.session_state["part_name"] = part_config["name"]
 
 if "IS_XVFB_RUNNING" not in st.session_state:
     start_xvfb()
