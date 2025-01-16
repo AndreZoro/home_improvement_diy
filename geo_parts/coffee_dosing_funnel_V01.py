@@ -94,7 +94,7 @@ def create_coffee_dosing_funnel_V01(
     i_dpth = 8,
     o_dia = 68,
     upper_dia = 80,
-    top_height = 30,
+    top_height = 20,
     cutout = True,
     cutout_wdth = 24,
     # sid=''

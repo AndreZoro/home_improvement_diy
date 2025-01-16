@@ -28,7 +28,7 @@ def build_part_overview():
             for idx, col in enumerate(cols):
                 with col:
                     for p in chunked_sub_parts[idx]:
-                        get_img_with_href(reg_parts[p]["main_image"][0],reg_parts[p]["main_image"][1],p[3:])
+                        get_img_with_href(reg_parts[p]["main_image"][0],reg_parts[p]["main_image"][1],p)
                         st.write(reg_parts[p]["name"])
     return overview_container
 

@@ -14,7 +14,7 @@ registered_parts = {
         ],
         "titel": "Design a corner braket to your own specifications.",
     },
-    "4p0_corner_braket_3sided": {
+    "p40_corner_braket_3sided": {
         "name": "Three Sided Corner Bracket",
         "categories": ["diy"],
         "main_image": ["static/images/corner_braket_3sides.png", "DESC"],
