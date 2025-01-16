@@ -6,7 +6,7 @@ import os
 
 
 def build_build123d_strap_clip(
-    width=20, thickness=3, height=22, layer_width=0.4, n_shells=3, sid="none"
+    width=20, thickness=3, height=22, layer_width=0.4, n_shells=3
 ):
     msgs = []
 
@@ -121,25 +121,36 @@ def build_build123d_strap_clip(
                 "Was not able to champfer the outer edges. Maybe you are using strange dimensions?"
             )
 
-    part_file_name = f"strap_clip_{sid}.stl"
 
     if len(msgs) == 0:
         msgs.append("Successfully created part.")
 
-    return main_body, msgs, part_file_name
+    return main_body, msgs
 
 
 def build_strap_clip(
-    width=20, thickness=3, height=22, layer_width=0.4, n_shells=3, sid="none"
+    width=20, thickness=3, height=22, layer_width=0.4, n_shells=3
 ):
-    pyvista_part, messages, part_file_name = build_build123d_strap_clip(
-        width, thickness, height, layer_width, n_shells, sid
+    params = locals()
+    params_string = ""
+    for k,v in params.items():
+        params_string += f"-{k}-{v}".replace('.','d')
+    part_file_name = f"strap_clip{params_string}.stl"
+
+    pyvista_part, messages = build_build123d_strap_clip(
+        width, thickness, height, layer_width, n_shells
     )
 
-    fd, temp_file_name = tempfile.mkstemp(
-        prefix=part_file_name[:-4], suffix=part_file_name[-4:]
-    )
-    os.close(fd)
-    export_stl(pyvista_part, temp_file_name)
+    # fd, temp_file_name = tempfile.mkstemp(
+    #     prefix=part_file_name[:-4], suffix=part_file_name[-4:]
+    # )
+    # os.close(fd)
 
-    return temp_file_name, messages
+
+    # Use tempfile.gettempdir() to get the system temporary directory
+    temp_dir = tempfile.gettempdir()
+    custom_temp_path = os.path.join(temp_dir, part_file_name)
+    # print(f"Exporting to: {custom_temp_path}")
+    export_stl(pyvista_part, custom_temp_path)
+
+    return custom_temp_path, messages

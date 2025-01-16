@@ -25,20 +25,20 @@ def build_random_top_bar_part_selection(total_cols = 7):
 
         # st.markdown("[![Check out all parts](static/images/all_parts.png)](https://mantiumcae.com/)")
     with col2:
-        get_img_with_href(reg_parts[random_parts[0]]["main_image"][0],random_parts[0],random_parts[0][3:])
+        get_img_with_href(reg_parts[random_parts[0]]["main_image"][0],random_parts[0],random_parts[0])
         # get_img_with_href("static/images/all_parts.png","bla")
         # st.image("static/images/all_parts.png", caption="Corner Braket with 2 sides")
     with col3:
-        get_img_with_href(reg_parts[random_parts[1]]["main_image"][0],random_parts[1],random_parts[1][3:])
+        get_img_with_href(reg_parts[random_parts[1]]["main_image"][0],random_parts[1],random_parts[1])
         # st.image("static/images/all_parts.png", caption="Corner Braket with 2 sides")
     with col4:
-        get_img_with_href(reg_parts[random_parts[2]]["main_image"][0],random_parts[2],random_parts[2][3:])
+        get_img_with_href(reg_parts[random_parts[2]]["main_image"][0],random_parts[2],random_parts[2])
         # st.image("static/images/all_parts.png", caption="Corner Braket with 2 sides")
     with col5:
-        get_img_with_href(reg_parts[random_parts[3]]["main_image"][0],random_parts[3],random_parts[3][3:])
+        get_img_with_href(reg_parts[random_parts[3]]["main_image"][0],random_parts[3],random_parts[3])
         # st.image("static/images/all_parts.png", caption="Corner Braket with 2 sides")
     with col6:
-        get_img_with_href(reg_parts[random_parts[4]]["main_image"][0],random_parts[4],random_parts[4][3:])
+        get_img_with_href(reg_parts[random_parts[4]]["main_image"][0],random_parts[4],random_parts[4])
         # st.image("static/images/all_parts.png", caption="Corner Braket with 2 sides")
     with col7:
         get_img_with_href("static/images/random_part.png",random_part_list[-1])

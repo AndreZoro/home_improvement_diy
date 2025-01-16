@@ -30,7 +30,7 @@ from misc_page_elements.session import get_session
 
 part_config = return_part_config(str(Path(__file__).stem))
 session_id = get_session()
-st.session_state["stl_file"] = None
+# st.session_state["stl_file"] = None
 st.session_state["part_name"] = part_config["name"]
 
 
@@ -54,9 +54,10 @@ with three_dee_placeholder:
     plotter = pv.Plotter(border=False)
     plotter.background_color = "#1e1e27"
     "static/stl_files/simple_strap_clip_V01.stl"
-    if st.session_state["stl_file"] is None:
-        part_file, _ = create_handle_v02(sid=session_id)
-        st.session_state["stl_file"] = part_file
+    # if st.session_state["stl_file"] is None:
+    if "stl_file" not in st.session_state:
+        part_file, _ = create_handle_v02()
+        st.session_state.stl_file = part_file
     # if st.session_state['stl_file'] == "static/stl_files/simple_strap_clip_V01.stl":
     # st.write(f"READING STL FILE : {st.session_state['stl_file']}")
     reader = pv.STLReader(st.session_state["stl_file"])
@@ -177,7 +178,6 @@ with part_controls_placeholder:
                 screw_dia,
                 slant_ang,
                 front_text,
-                session_id,
             )
 
             st.session_state["stl_file"] = part_file

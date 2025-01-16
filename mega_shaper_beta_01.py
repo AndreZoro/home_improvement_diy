@@ -25,7 +25,7 @@ st.set_page_config(
 
 
 overview_page = st.Page(
-    "pagess/00_overview.py",
+    "pagess/p00_overview.py",
     # title="2 Sided Corner Braket",
     # icon=":material/add_circle:"
 )
@@ -34,32 +34,32 @@ overview_page = st.Page(
 #                       # icon=":material/add_circle:"
 #                       )
 drawer_handle_v02 = st.Page(
-    "pagess/91_drawer_handle_V02.py",
+    "pagess/p91_drawer_handle_V02.py",
     title="Design a Nice Drawer Handle",
     # icon=":material/add_circle:"
 )
 two_sided_braket = st.Page(
-    "pagess/10_corner_braket_2sided.py",
+    "pagess/p10_corner_braket_2sided.py",
     title="2 Sided Corner Braket",
     # icon=":material/add_circle:"
 )
 slotcar_rim = st.Page(
-    "pagess/80_slotcar_rim.py",
+    "pagess/p80_slotcar_rim.py",
     title="Slotcar Rim Designer",
     # icon=":material/add_circle:"
 )
 simple_strap_clip = st.Page(
-    "pagess/20_simple_strap_clip.py",
+    "pagess/p20_simple_strap_clip.py",
     title="Simple Strap Clip",
     # icon=":material/add_circle:"
 )
 three_sided_braket = st.Page(
-    "pagess/40_corner_braket_3sided.py",
+    "pagess/p40_corner_braket_3sided.py",
     title="3 Sided Corner Braket",
     # icon=":material/add_circle:"
 )
 coffee_dosing_funnel = st.Page(
-    "pagess/100_coffee_dosing_funnel_V01.py",
+    "pagess/p100_coffee_dosing_funnel_V01.py",
     title="Coffee Dosing Funnel",
     # icon=":material/add_circle:"
 )

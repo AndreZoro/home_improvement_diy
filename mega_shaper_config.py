@@ -1,5 +1,5 @@
 registered_parts = {
-    "10_corner_braket_2sided": {
+    "p10_corner_braket_2sided": {
         "name": "Two Sided Corner Bracket",
         "categories": [
             "diy",
@@ -14,7 +14,7 @@ registered_parts = {
         ],
         "titel": "Design a corner braket to your own specifications.",
     },
-    "40_corner_braket_3sided": {
+    "4p0_corner_braket_3sided": {
         "name": "Three Sided Corner Bracket",
         "categories": ["diy"],
         "main_image": ["static/images/corner_braket_3sides.png", "DESC"],
@@ -27,7 +27,7 @@ registered_parts = {
         ],
         "titel": "Design a corner braket to your own specifications.",
     },
-    "20_simple_strap_clip": {
+    "p20_simple_strap_clip": {
         "name": "Strap Clip",
         "categories": ["first_demo_parts", "gadgets"],
         "main_image": ["static/images/strap_clip/simple_strap_clip.png", "DESC"],
@@ -40,7 +40,7 @@ registered_parts = {
         ],
         "titel": "Design a strap clip for your backpack to your own specifications.",
     },
-    "30_vac_adaptor": {
+    "p30_vac_adaptor": {
         "name": "Vacuum Hose Adaptor",
         "categories": ["diy"],
         "main_image": ["static/images/vac_adaptor.png", "DESC"],
@@ -53,7 +53,7 @@ registered_parts = {
         ],
         "titel": "Design a vacuum nozzle adaptor to your own specifications.",
     },
-    "70_simple_coat_hook": {
+    "p70_simple_coat_hook": {
         "name": "Coat Hook",
         "categories": ["diy", "home_deco"],
         "main_image": ["static/images/coat_hook.png", "DESC"],
@@ -66,7 +66,7 @@ registered_parts = {
         ],
         "titel": "Design a coat hook to your own specifications.",
     },
-    "50_simple_cabel_clip": {
+    "p50_simple_cabel_clip": {
         "name": "Simple Cable Clip",
         "categories": ["diy"],
         "main_image": ["static/images/cabel_clip.png", "DESC"],
@@ -79,7 +79,7 @@ registered_parts = {
         ],
         "titel": "Design a cable clip to your own specifications.",
     },
-    "60_broomstick_mount": {
+    "p60_broomstick_mount": {
         "name": "Broomstick Mount",
         "categories": ["diy", "home_deco"],
         "main_image": ["static/images/broomstick_hook.png", "DESC"],
@@ -92,7 +92,7 @@ registered_parts = {
         ],
         "titel": "Design a broomstick mount to your own specifications.",
     },
-    "80_slotcar_rim": {
+    "p80_slotcar_rim": {
         "name": "Slot Car Rim",
         "categories": ["first_demo_parts", "rc", "model", "slotcar"],
         "main_image": ["static/images/slotcar_rim/slotcar_rim.png", "DESC"],
@@ -105,7 +105,7 @@ registered_parts = {
         ],
         "titel": "Design a slot car rim to your own specifications.",
     },
-    # "90_drawer_handle": {
+    # "p90_drawer_handle": {
     #     "name": "Drawer Handle",
     #     "categories": ["first_demo_parts", "diy", "home_deco"],
     #     "main_image": [
@@ -121,7 +121,7 @@ registered_parts = {
     #     ],
     #     "titel": "Design a drawer handle to your own specifications.",
     # },
-    "91_drawer_handle_V02": {
+    "p91_drawer_handle_V02": {
         "name": "Drawer Handle",
         "categories": ["first_demo_parts", "diy", "home_deco"],
         "main_image": [
@@ -137,7 +137,7 @@ registered_parts = {
         ],
         "titel": "Design a drawer handle to your own specifications.",
     },
-    "100_coffee_dosing_funnel_V01": {
+    "p100_coffee_dosing_funnel_V01": {
         "name": "Coffee Dosing Funnel",
         "categories": ["first_demo_parts", "coffee"],
         "main_image": [

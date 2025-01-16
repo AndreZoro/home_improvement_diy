@@ -32,7 +32,6 @@ def create_build123d_handle_v02(
     screw_dia = 'm4',
     slant_ang = -25,
     front_text = '',
-    sid=''
 ):
 
 
@@ -174,7 +173,7 @@ def create_build123d_handle_v02(
         ex34_sk2 = plane * Text(front_text, font_size=15, align=(Align.CENTER, Align.MAX))
         base_handle -= extrude(ex34_sk2, amount=-font_deepness)
 
-    part_file_name = f"drawer_handle_{sid}.stl"
+    # part_file_name = f"drawer_handle_{sid}.stl"
     # fd, temp_file_name = tempfile.mkstemp(prefix=part_file_name[:-4], suffix=part_file_name[-4:])
     # os.close(fd)
     # export_stl(base_handle, temp_file_name)
@@ -182,7 +181,7 @@ def create_build123d_handle_v02(
     if len(msgs) == 0:
         msgs.append("Part generated successfully.")
 
-    return base_handle, msgs, part_file_name
+    return base_handle, msgs
 
 
 def create_handle_v02(
@@ -194,16 +193,24 @@ def create_handle_v02(
     screw_distance = 64,
     screw_dia = 'm4',
     slant_ang = -25,
-    front_text = '',
-    sid=''
+    front_text = ''
 ):
-    pyvista_part, messages, part_file_name = create_build123d_handle_v02(h_width,h_thickness,h_height,h_rad,b_thickness,screw_distance,screw_dia,slant_ang,front_text,sid)
+    params = locals()
+    params_string = ""
+    for k,v in params.items():
+        params_string += f"-{k}-{v}".replace('.','d')
+    part_file_name = f"drawer_handle{params_string}.stl"
 
-    fd, temp_file_name = tempfile.mkstemp(prefix=part_file_name[:-4], suffix=part_file_name[-4:])
-    os.close(fd)
-    export_stl(pyvista_part, temp_file_name)
+    pyvista_part, messages = create_build123d_handle_v02(h_width,h_thickness,h_height,h_rad,b_thickness,screw_distance,screw_dia,slant_ang,front_text)
 
-    return temp_file_name, messages
+
+    # Use tempfile.gettempdir() to get the system temporary directory
+    temp_dir = tempfile.gettempdir()
+    custom_temp_path = os.path.join(temp_dir, part_file_name)
+    # print(f"Exporting to: {custom_temp_path}")
+    export_stl(pyvista_part, custom_temp_path)
+
+    return custom_temp_path, messages
 
 
 

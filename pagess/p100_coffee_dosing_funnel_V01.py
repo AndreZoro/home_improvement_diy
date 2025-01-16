@@ -30,7 +30,7 @@ from misc_page_elements.session import get_session
 
 part_config = return_part_config(str(Path(__file__).stem))
 session_id = get_session()
-st.session_state["stl_file"] = None
+# st.session_state["stl_file"] = None
 st.session_state["part_name"] = part_config["name"]
 
 
@@ -57,9 +57,11 @@ with three_dee_placeholder:
     plotter = pv.Plotter(border=False)
     plotter.background_color = "#1e1e27"
     "static/stl_files/simple_strap_clip_V01.stl"
-    if st.session_state["stl_file"] is None:
-        part_file, _ = create_coffee_dosing_funnel_V01(sid=session_id)
-        st.session_state["stl_file"] = part_file
+    # if st.session_state["stl_file"] is None:
+    if "stl_file" not in st.session_state:
+        # print("SOMEHOW ABOUT TO RECREATE FROM SCRATCH:")
+        part_file, _ = create_coffee_dosing_funnel_V01()
+        st.session_state.stl_file = part_file
     # if st.session_state['stl_file'] == "static/stl_files/simple_strap_clip_V01.stl":
     # st.write(f"READING STL FILE : {st.session_state['stl_file']}")
     reader = pv.STLReader(st.session_state["stl_file"])
@@ -122,7 +124,7 @@ with part_controls_placeholder:
             "Funnel height in mm",
             min_value=8.0,
             max_value=80.0,
-            value=30.0,
+            value=20.0,
             step=1.0,
             help="The higher the funnel, the more coffee you will catch. Should not exceed the dimensions of your grinder, though.",
         )
@@ -157,7 +159,7 @@ with part_controls_placeholder:
                 top_height,
                 cutout,
                 cutout_wdth,
-                sid=session_id,
+                # sid=session_id,
             )
 
             st.session_state["stl_file"] = part_file

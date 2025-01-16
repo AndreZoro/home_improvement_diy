@@ -9,9 +9,12 @@ def coffee_dosing_build123d_V01(i_dia = 58,
     i_dpth = 8,
     o_dia = 68,
     upper_dia = 80,
-    top_height = 30,
+    top_height = 20,
     cutout = True,
     cutout_wdth = 24):
+
+    params_from_func = locals()
+    print(f"Building funnel with: {params_from_func}")
 
     msgs = []
 
@@ -94,12 +97,34 @@ def create_coffee_dosing_funnel_V01(
     top_height = 30,
     cutout = True,
     cutout_wdth = 24,
-    sid=''
+    # sid=''
 ):
-    pyvista_part, messages = coffee_dosing_build123d_V01(i_dia,i_dpth,o_dia,upper_dia,top_height,cutout,cutout_wdth)
-    part_file_name = f"coffe_dosing_funnel_{sid}.stl"
-    fd, temp_file_name = tempfile.mkstemp(prefix=part_file_name[:-4], suffix=part_file_name[-4:])
-    os.close(fd)
-    export_stl(pyvista_part, temp_file_name)
+    params = locals()
+    params_string = ""
+    for k,v in params.items():
+        params_string += f"-{k}-{v}".replace('.','d')
+    part_file_name = f"coffee_dosing_funnel{params_string}.stl"
 
-    return temp_file_name, messages
+    pyvista_part, messages = coffee_dosing_build123d_V01(i_dia,i_dpth,o_dia,upper_dia,top_height,cutout,cutout_wdth)
+
+#     part_file_name = f"coffee_dosing_funnel{params_string}.stl"
+#     # print(f"Exporting to: {part_file_name}")
+#     fd, temp_file_name = tempfile.mkstemp(prefix=part_file_name[:-4], suffix=part_file_name[-4:])
+#     print(f"Exporting to: {temp_file_name}")
+#     export_stl(pyvista_part, temp_file_name)
+#     os.close(fd)
+#
+    # Use tempfile.gettempdir() to get the system temporary directory
+    temp_dir = tempfile.gettempdir()
+    custom_temp_path = os.path.join(temp_dir, part_file_name)
+    # print(f"Exporting to: {custom_temp_path}")
+    export_stl(pyvista_part, custom_temp_path)
+
+
+
+    # # Write to the custom-named temporary file
+    # with open(custom_temp_path, 'w') as temp_file:
+    #     temp_file.write("This is a temporary file with a custom name.")
+
+
+    return custom_temp_path, messages
