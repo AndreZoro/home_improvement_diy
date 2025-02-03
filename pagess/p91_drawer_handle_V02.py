@@ -32,6 +32,7 @@ part_config = return_part_config(str(Path(__file__).stem))
 session_id = get_session()
 # st.session_state["stl_file"] = None
 st.session_state["part_name"] = part_config["name"]
+st.session_state["part_color"] = "#F99C00"
 
 
 if "IS_XVFB_RUNNING" not in st.session_state:
@@ -67,7 +68,7 @@ with three_dee_placeholder:
     # plotter.enable_eye_dome_lighting()
     plotter.add_mesh(
         mesh,
-        color="orange",
+        color=st.session_state["part_color"],
         pbr=True,
         metallic=0.5,
         roughness=0.2,
@@ -79,6 +80,7 @@ with three_dee_placeholder:
 
     plotter.view_vector([1, 1, 1])
     stpyvista(plotter, key=f"plotter_{st.session_state['stl_file']}")
+
 
 
 with part_controls_placeholder:
@@ -161,6 +163,12 @@ with part_controls_placeholder:
                 "Enter some optional text for your handle", value=""
             )
 
+        dis_col_1, dis_col2 = st.columns(2)
+        with dis_col_1:
+            st.session_state["part_color"] = st.color_picker("Pick A Color", "#F99C00", help="This is only for display purposses.")
+        with dis_col2:
+            st.toggle("Show dummy drawer", value=False, help="NOT IMPLEMENTED YET!")
+
         submitted = st.form_submit_button(
             "Generate Your Part", use_container_width=True
         )
@@ -193,7 +201,7 @@ with part_controls_placeholder:
 
                 plotter.add_mesh(
                     mesh,
-                    color="orange",
+                    color=st.session_state["part_color"],
                     pbr=True,
                     metallic=0.5,
                     roughness=0.2,
