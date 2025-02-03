@@ -46,10 +46,23 @@ if "IS_XVFB_RUNNING" not in st.session_state:
 ) = build_page(part_config)
 
 with help_expander_place_holder:
-    with st.expander(part_config["titel"]):
-        st.write(
+    with st.expander(part_config["titel"] + " (expand for help)"):
+        st.markdown(
             """
-            General dimensions to design your own coffee dosing funnel:
+            ## General:
+            Design a coffee dosing funnel to you own specifications. Your grinder will let more or less coffee ground go passt your portafiler and spread it all around your kitchen.
+            The funnel will help to capture most of the ground.
+
+            ## Design Hints:
+            The inner filter diamater will be the main dimension, you want to get right. Common dimensions are 54, 57 and 58.3mm.
+            As the funnel is designed with a gap and the 3D print material is not 100% rigid, the design has some springiness to it.
+            So, you might want to add a few tenths of a mm to the design as it will make sure you get a very snug fit.
+
+            Other dimensions are mainly important to make sure the funnel fits into your grinder. The tighter the fit, the less ground will spill over.
+
+            ## 3D Print:
+            This part is very easy to print on a standard FDM printer. Just orient it upside down, so you do not need supports.
+            Keep in mind, that 3D printed objects are not food safe!
         """
         )
 

@@ -68,12 +68,12 @@ def coffee_dosing_build123d_V01(i_dia = 58,
     if cutout:
         c_pts = [
             (-upper_thickness, -i_dpth), # 0
-            (-upper_thickness, upper_thickness), # 1
-            (-cutout_wdth/2.0, top_height / 3.0), # 2
+            (-upper_thickness, -i_dpth * 0.65), # 1
+            (-cutout_wdth/2.0, upper_thickness), # 2
             (-cutout_wdth/2.0 * 1.8, top_height * 2.0), # 3
             ( cutout_wdth/2.0 * 1.8, top_height * 2.0), # 4
-            ( cutout_wdth/2.0, top_height / 3.0), # 5
-            ( upper_thickness, upper_thickness), # 6
+            ( cutout_wdth/2.0, upper_thickness), # 5
+            ( upper_thickness, -i_dpth * 0.65), # 6
             ( upper_thickness, -i_dpth), # 7
             (-upper_thickness, -i_dpth) # 0
         ]
