@@ -26,7 +26,10 @@ def temp_get_in_touch():
 
 def add_footer():
     st.divider()
-    st.write("SEO text goes here")
+    st.markdown("""
+                #### Create & Download Custom 3D Models for 3D Printing
+                Design and customize 3D models effortlessly with our online parametric modeling tool. Whether you're a maker, engineer, designer, or hobbyist, our web app allows you to create precise, customizable geometries tailored to your needs. Easily adjust parameters, visualize changes in real time, and export high-quality STL files ready for 3D printing. No software installation is required—simply use your browser to generate unique 3D objects for rapid prototyping, functional parts, or creative projects. Start designing today and bring your ideas to life with precision and flexibility!
+                """)
     st.divider()
     fc1, fc2, fc3 = st.columns([3,1,1])
     with fc1:
