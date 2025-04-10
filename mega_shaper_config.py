@@ -153,6 +153,22 @@ registered_parts = {
         ],
         "titel": "Design a coffee dosing funnel to your own specifications.",
     },
+    "p110_gadget_stand_V01": {
+        "name": "Simple Gadget Stand",
+        "categories": ["first_demo_parts", "gadget"],
+        "main_image": [
+            "static/images/coffee_funnel/coffee_funnel_main_V02.png",
+            "DESC",
+        ],
+        "hero_images": [
+            ["static/images/coffee_funnel/coffee_funnel_main_V01.png", "DESC"],
+            ["static/images/coffee_funnel/coffee_funnel_demo_01.png", "DESC"],
+            ["static/images/coffee_funnel/coffee_funnel_demo_02.png", "DESC"],
+            ["static/images/coffee_funnel/coffee_funnel_demo_03.png", "DESC"],
+            # ["static/images/drawer_handel/drawer_pull_05.png", "DESC"],
+        ],
+        "titel": "Design a simple gadget stand to your own specifications.",
+    },
 }
 
 

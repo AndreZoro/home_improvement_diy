@@ -13,9 +13,6 @@ def coffee_dosing_build123d_V01(i_dia = 58,
     cutout = True,
     cutout_wdth = 24):
 
-    params_from_func = locals()
-    print(f"Building funnel with: {params_from_func}")
-
     msgs = []
 
     lower_thickness = 1.2

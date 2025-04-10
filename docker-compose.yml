@@ -6,7 +6,38 @@ services:
     ports:
       - "8522:8522"
     restart: always
-
+  psql_spray_db:
+    #image: postgres:15.8-alpine
+    # image: postgis/postgis:15-3.4-alpine
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=${PSQL_ADMIN_USER}
+      - POSTGRES_PASSWORD=${PSQL_ADMIN_PW}
+      - POSTGRES_DB=${PSQL_DB}
+      - POSTGRES_PORT=${PSQL_PORT}
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/data"
+    restart: always
+    ports:
+      - "${PSQL_PORT}:5432"
+  # psql_db_services:
+  #   # This is the Django stuff
+  #   build:
+  #     context: ./spray_data_services
+  #     dockerfile: Dockerfile_data_services
+  #   volumes:
+  #     - .:/spray_data_services
+  #   ports:
+  #     - "8000:8000"
+  #   restart: always
+  #   depends_on:
+  #     - psql_spray_db
+  #   environment:
+  #     - POSTGRES_USER=${PSQL_USER}
+  #     - POSTGRES_PASSWORD=${PSQL_PW}
+  #     - POSTGRES_DB=${PSQL_DB}
+  #     - POSTGRES_HOST=psql_spray_db
+  #     - POSTGRES_PORT=${PSQL_PORT}
   # nginx:
   #   image: nginx:latest
   #   ports:

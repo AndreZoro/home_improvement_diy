@@ -63,6 +63,11 @@ coffee_dosing_funnel = st.Page(
     title="Coffee Dosing Funnel",
     # icon=":material/add_circle:"
 )
+gadget_stand = st.Page(
+    "pagess/p110_gadget_stand_V01.py",
+    title="Simple Gadget Stand",
+    # icon=":material/add_circle:"
+)
 #
 pg = st.navigation(
     [
@@ -74,6 +79,7 @@ pg = st.navigation(
         simple_strap_clip,
         three_sided_braket,
         coffee_dosing_funnel,
+        gadget_stand,
     ]
 )
 #
